@@ -11,54 +11,78 @@ public class A1Adept {
 		int inventorySize, numCustomers, numPurchased;
 		HashMap<String, Double> inventory;
 		HashMap<String, Double> custTotals;
-		String custInfo, fname, lname, fullname;
+		String fname, lname, fullname;
 		double totalCost;
 		
 		inventorySize = scan.nextInt();
-		scan.nextLine();
 		
 		inventory = new HashMap<String, Double>(inventorySize);
 		
 		for(int i = 0; i < inventorySize; i++) {
-			//gets the item's name and price in a line, splits, then stores that
-			//information in an array
-			String[] itemInfo = scan.nextLine().split("\\s");
-			
-			inventory.put(itemInfo[0], Double.parseDouble(itemInfo[1]));
+			//store the item name as the key and the price as the value
+			//the inventory hashmap is used to calculate the total amount spent
+			//by each customer
+			inventory.put(scan.next(), scan.nextDouble());
 		}
 
 		
 		numCustomers = scan.nextInt();
-		scan.nextLine();
 		
 		custTotals = new HashMap<String, Double>(numCustomers);
 		
 		for(int i = 0; i < numCustomers; i++) {
-			custInfo = scan.nextLine();
 			
-			System.out.println(custInfo);
+			fname = scan.next();
+			lname = scan.next();
 			
-			Scanner infostr = new Scanner(custInfo);
-			
-			fname = infostr.next();
-			lname = infostr.next();
-			
+			//combines the first and last name of the customer
+			//the customer's fullname will be the key holding their total spent
 			fullname = fname + " " + lname;
-			numPurchased = infostr.nextInt();
+			numPurchased = scan.nextInt();
 			
+			//the for loop calculates the total amount spent by each customer
 			totalCost = 0.0;
-			
 			for(int j = 0; j < numPurchased; j++) {
-				totalCost += infostr.nextDouble() * inventory.get(infostr.next());
+				totalCost += scan.nextDouble() * inventory.get(scan.next());
 			}
 			
 			custTotals.put(fullname, totalCost);
 			
-			infostr.close();
 		}
 		
-		System.out.println(inventory.toString());
-		System.out.println(custTotals.toString());
+		String minkey = null;
+		String maxkey = null;
+		int numEntries = custTotals.keySet().size();
+		double avgSpent = 0;
+		
+		for(String key : custTotals.keySet()){
+			//sets minkey if it is null
+			//finds the key associated with the smallest value in the hashmap
+			if(minkey == null || 
+					custTotals.get(minkey) > custTotals.get(key)) {
+				//since java short circuits the or operator, get(minkey) won't
+				//be called if minkey is null
+				minkey = key;
+			}
+			
+			//sets maxkey if it is null
+			//finds the key associated with the largest value in the hashmap
+			if(maxkey == null ||
+					custTotals.get(maxkey) < custTotals.get(key)) {
+				maxkey = key;
+			}
+			
+			avgSpent += custTotals.get(key);
+		}
+		
+		avgSpent = avgSpent / numEntries;
+		
+		//display the results
+		System.out.println("Biggest: " + maxkey + 
+				"(" + String.format("%.2f", custTotals.get(maxkey)) + ")");
+		System.out.println("Smallest: "+ minkey + 
+				"(" + String.format("%.2f", custTotals.get(minkey)) + ")");
+		System.out.println("Average: " + String.format("%.2f", avgSpent));
 		
 		scan.close();
 	}

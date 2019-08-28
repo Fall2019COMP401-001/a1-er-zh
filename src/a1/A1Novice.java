@@ -27,18 +27,19 @@ public class A1Novice {
 			//stores the first letter of the first name
 			fname = Character.toString(scan.next().charAt(0));
 			lname = scan.next();
-			numPurchased = scan.nextInt();
+			numItems = scan.nextInt();
 			
 			totalCost = 0.0;
 			
-			for(int j = 0; j < numPurchased; j++) {
+			for(int j = 0; j < numItems; j++) {
 				//retrieve and store the number and cost of the items purchased
-				numItems = scan.nextInt();
+				numPurchased = scan.nextInt();
+				
 				//skip over the name of the item since it is not important
 				scan.next();
 				itemCost = scan.nextDouble();
 				
-				totalCost += numItems * itemCost;
+				totalCost += numPurchased * itemCost;
 			}
 			
 			customerTotals[i] = fname + ". " + lname + ": " + String.format("%.2f", totalCost);
