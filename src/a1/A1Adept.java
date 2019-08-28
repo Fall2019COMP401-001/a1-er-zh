@@ -84,9 +84,9 @@ public class A1Adept {
 		
 		//display the results
 		System.out.println("Biggest: " + maxkey + 
-				"(" + String.format("%.2f", custTotals.get(maxkey)) + ")");
+				" (" + String.format("%.2f", custTotals.get(maxkey)) + ")");
 		System.out.println("Smallest: "+ minkey + 
-				"(" + String.format("%.2f", custTotals.get(minkey)) + ")");
+				" (" + String.format("%.2f", custTotals.get(minkey)) + ")");
 		System.out.println("Average: " + String.format("%.2f", avgSpent));
 		
 		scan.close();

@@ -28,8 +28,9 @@ public class A1Jedi {
 		//initializes a hashmap representing the item inventory with
 		//the names of the items and an empty array
 		for(int i = 0; i < inventorySize; i++) {
-			Integer[] temp = {0, 0};
 			itemName = scan.next();
+			
+			Integer[] temp = {0, 0};
 			inventory.put(itemName, temp);
 			inventoryOrdered[i] = itemName;
 			
@@ -49,15 +50,23 @@ public class A1Jedi {
 			
 			numItems = scan.nextInt();
 			
+			//used to check if the same item appears multiple times on a customer's
+			//shopping list
+			HashMap<String, Integer> usedKeys = new HashMap<String, Integer>(numItems);
+			
 			//the for loop adds the number of items purchased
 			for(int j = 0; j < numItems; j++) {
 				numPurchased = scan.nextInt();
 				itemKey = scan.next();
 				
 				Integer[] temp = inventory.get(itemKey);
-				temp[0]++;
+				temp[0] += usedKeys.containsKey(itemKey) ? 0 : 1;
 				temp[1] += numPurchased;
 				inventory.put(itemKey, temp);
+				
+				if (!usedKeys.containsKey(itemKey)) {
+					usedKeys.put(itemKey, 1);
+				}
 			}
 						
 		}
