@@ -21,6 +21,7 @@ public class A1Novice {
 		//that will be outputted at the end of the program
 		customerTotals = new String[numCustomers];
 		
+		//totals up the purchase amount for all customers
 		for(int i = 0; i < numCustomers; i++) {
 			//gets input containing the customer's name and number of items purchased
 		

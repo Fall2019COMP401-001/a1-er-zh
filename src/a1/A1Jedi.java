@@ -62,6 +62,7 @@ public class A1Jedi {
 						
 		}
 		
+		//print the results of the program
 		for(String key : inventoryOrdered) {
 			if (inventory.get(key)[0] == 0) {
 				System.out.print("No");

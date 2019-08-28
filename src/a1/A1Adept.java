@@ -51,6 +51,10 @@ public class A1Adept {
 			
 		}
 		
+		/* find the maximum spent, minimum spent, and the average amount spent 
+		 * per customer, by iterating over all keys in the list
+		 */
+		
 		String minkey = null;
 		String maxkey = null;
 		int numEntries = custTotals.keySet().size();
