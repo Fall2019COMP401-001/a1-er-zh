@@ -43,7 +43,8 @@ public class A1Adept {
 			//the for loop calculates the total amount spent by each customer
 			totalCost = 0.0;
 			for(int j = 0; j < numPurchased; j++) {
-				totalCost += scan.nextDouble() * inventory.get(scan.next());
+				//retrieve the cost of the item and multiply it by it cost
+				totalCost += scan.nextInt() * inventory.get(scan.next());
 			}
 			
 			custTotals.put(fullname, totalCost);
